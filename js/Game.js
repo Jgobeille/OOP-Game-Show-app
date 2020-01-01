@@ -27,7 +27,7 @@ class Game {
    */
   getRandomPhrase() {
     const upper = this.phrases.length;
-    const array = [];
+
     for (let i = 0; i < this.phrases.length; i++) {
       const random = Math.floor(Math.random() * upper - 1 + 1);
       return this.phrases[random];
