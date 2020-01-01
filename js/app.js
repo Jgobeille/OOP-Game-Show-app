@@ -25,8 +25,17 @@ If the selected letter is not in the phrase, one of the player's hearts in the s
 /*
 Project Idea: Base the design on Kingdom Hearts! Change the hearts to image of kingdom hearts hearts and make the phrases kingdom hearts related!!
 */
-
 const game = new Game();
-const testPhrase = new Phrase("Hello World!");
+// game.phrases.forEach((phrase, index) => {
+//   console.log(`Phrase ${index} - phrase: ${phrase.phrase}`);
+// });
 
-console.log(`Phrase - phrase: ${testPhrase.phrase}`);
+const logPhrase = phrase => {
+  console.log(`Phrase - phrase: `, phrase.phrase);
+};
+
+logPhrase(game.getRandomPhrase());
+logPhrase(game.getRandomPhrase());
+logPhrase(game.getRandomPhrase());
+logPhrase(game.getRandomPhrase());
+logPhrase(game.getRandomPhrase());
