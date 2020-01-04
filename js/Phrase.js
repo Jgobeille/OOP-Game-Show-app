@@ -12,7 +12,7 @@ class Phrase {
    */
   //PhraseToDisplay method
   addPhraseToDisplay() {
-    const randomPhrase = game.getRandomPhrase();
+    const randomPhrase = game.activePhrase;
     const randomPhraseSplit = randomPhrase.phrase.split("");
     const phraseDiv = document.getElementById("phrase").children[0];
 
@@ -40,8 +40,7 @@ class Phrase {
         this.appendChild(phraseDiv, element);
       }
     });
-    //create an li class and pass in each letter or space into the created class
-    //hide all of those letters
+    return console.log(randomPhrase);
   }
   //creates Element
   createElement(elementName, property, value, className, text) {

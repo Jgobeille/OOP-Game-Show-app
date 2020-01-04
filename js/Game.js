@@ -6,7 +6,7 @@ class Game {
   constructor() {
     this.missed = 0;
     this.phrases = this.createPhrases();
-    this.activePhrases = this.getRandomPhrase();
+    this.activePhrase = this.getRandomPhrase();
   }
 
   createPhrases() {
@@ -39,6 +39,9 @@ class Game {
    */
   startGame() {
     //get the screen overlay and hide it
-    //call addPhraseToDisplay
+    const phrase = new Phrase();
+    const overlay = document.getElementById("overlay");
+    overlay.style.display = "none";
+    phrase.addPhraseToDisplay();
   }
 }
