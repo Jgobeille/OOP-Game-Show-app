@@ -6,16 +6,16 @@ class Game {
   constructor() {
     this.missed = 0;
     this.phrases = this.createPhrases();
-    this.activePhrases = null;
+    this.activePhrases = this.getRandomPhrase();
   }
 
   createPhrases() {
     const array = [
-      new Phrase("Hello1"),
-      new Phrase("Hello2"),
-      new Phrase("Hello3"),
-      new Phrase("Hello4"),
-      new Phrase("Hello5")
+      new Phrase("Hello one"),
+      new Phrase("Hello two"),
+      new Phrase("Hello three"),
+      new Phrase("Hello four"),
+      new Phrase("Hello five")
     ];
 
     return array;
@@ -32,5 +32,13 @@ class Game {
       const random = Math.floor(Math.random() * upper - 1 + 1);
       return this.phrases[random];
     }
+  }
+
+  /**
+   * Begins game by selecting a random phrase and displaying it to user
+   */
+  startGame() {
+    //get the screen overlay and hide it
+    //call addPhraseToDisplay
   }
 }
