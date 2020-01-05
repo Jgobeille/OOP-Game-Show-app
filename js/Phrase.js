@@ -40,7 +40,7 @@ class Phrase {
         this.appendChild(phraseDiv, element);
       }
     });
-    return console.log(randomPhrase);
+    return randomPhrase;
   }
   //creates Element
   createElement(elementName, property, value, className, text) {
