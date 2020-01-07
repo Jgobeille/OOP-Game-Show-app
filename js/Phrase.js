@@ -12,12 +12,11 @@ class Phrase {
    */
   //PhraseToDisplay method
   addPhraseToDisplay() {
-    const randomPhrase = game.activePhrase;
-    const randomPhraseSplit = randomPhrase.phrase.split("");
+    const randomPhrase = game.activePhrase.phrase.split("");
     const phraseDiv = document.getElementById("phrase").children[0];
 
     //iterate over the phrase and output each letter(maybe make as a helper function?)
-    randomPhraseSplit.map(letter => {
+    randomPhrase.map(letter => {
       const letterUpper = letter.toUpperCase();
       //if there is more than one letter and if it is not a space, then append to the page
       if (letter.length <= 1 && letter.match(/[a-zA-Z]/i)) {
@@ -54,11 +53,32 @@ class Phrase {
   appendChild(element, elementToBeAppended) {
     element.appendChild(elementToBeAppended);
   }
-  //checkLetter method
-  //iterate over the phrase and output each letter(use filter method to pull out all matches)
-  //check if letter selected matches any of the letters in the phrase
 
-  //showMatchedLetter method
-  //use checkLetter filtered matches
-  //set all of the matches display to "block"
+  /**
+   * Checks if passed letter is in phrase
+   * @param (string) letter - Letter to check
+   */
+  checkLetter(letter) {
+    const random = game.activePhrase.phrase.split("");
+    //iterate over the phrase and output each letter(use filter method to pull out all matches)
+    //check if letter selected matches any of the letters in the phrase
+    const some = random.some(oneLetter => oneLetter === letter);
+
+    return some;
+  }
+
+  /**
+   * Displays passed letter on screen after a match is found
+   * @param (string) letter - Letter to display
+   */
+  showMatchedLetter(letter) {
+    //use checkLetter filtered matches
+    const phraseDiv = [...document.querySelectorAll("#phrase li")];
+
+    phraseDiv.map(phrase => {
+      if (phrase.textContent === letter) {
+        phrase.className = `show letter ${letter}`;
+      }
+    });
+  }
 }
