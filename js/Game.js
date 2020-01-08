@@ -4,7 +4,7 @@
 
 class Game {
   constructor() {
-    this.missed = 0;
+    this.missed = 5;
     this.phrases = this.createPhrases();
     this.activePhrase = this.getRandomPhrase();
   }
@@ -52,14 +52,27 @@ class Game {
 * @return {boolean} True if game has been won, false if game wasn't
 won
 */
-  checkForWin() {}
+
+  checkForWin() {
+    const phraseDiv = [...document.querySelectorAll("#phrase li")];
+    const isNotHidden = phrase => phrase.classList[0] !== "hide";
+    return phraseDiv.every(isNotHidden);
+  }
 
   /**
    * Increases the value of the missed property
    * Removes a life from the scoreboard
    * Checks if player has remaining lives and ends game if player is out
    */
-  removeLife() {}
+  removeLife() {
+    const hearts = [...document.querySelectorAll("#scoreboard li img")];
+    const counter = (this.missed -= 1);
+    hearts[counter].setAttribute("src", "images/lostHeart.png");
+
+    if (this.missed === 0) {
+      this.gameOver();
+    }
+  }
 
   /**
    * Displays game over message
