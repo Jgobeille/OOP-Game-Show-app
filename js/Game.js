@@ -70,7 +70,7 @@ won
     hearts[counter].setAttribute("src", "images/lostHeart.png");
 
     if (this.missed === 0) {
-      this.gameOver();
+      this.gameOver(true);
     }
   }
 
@@ -78,5 +78,31 @@ won
    * Displays game over message
    * @param {boolean} gameWon - Whether or not the user won the game
    */
-  gameOver(gameWon) {}
+  gameOver(gameWon) {
+    const overlay = document.getElementById("overlay");
+    const gameOverMessage = overlay.children[1];
+    const phraseDiv = document.getElementById("phrase");
+    const ul = document.createElement("ul");
+    const hearts = [...document.querySelectorAll("#scoreboard li img")];
+    this.missed = 5;
+    if (gameWon === false) {
+      overlay.style.display = "";
+      overlay.style.backgroundColor = "red";
+      gameOverMessage.textContent = "Sorry! You ran out of lives!";
+      phraseDiv.children[0].remove();
+      phraseDiv.appendChild(ul);
+      for (let i = 0; i < hearts.length; i++) {
+        hearts[i].setAttribute("src", "images/liveHeart.png");
+      }
+    } else {
+      overlay.style.display = "";
+      overlay.style.backgroundColor = "Green";
+      gameOverMessage.textContent = "You did it!";
+      phraseDiv.children[0].remove();
+      phraseDiv.appendChild(ul);
+      for (let i = 0; i < hearts.length; i++) {
+        hearts[i].setAttribute("src", "images/liveHeart.png");
+      }
+    }
+  }
 }
