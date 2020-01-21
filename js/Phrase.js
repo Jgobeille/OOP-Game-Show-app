@@ -54,12 +54,14 @@ class Phrase {
    * @param (string) letter - Letter to check
    */
   checkLetter(letter) {
-    const random = game.activePhrase.phrase.split("");
+    const random = game.activePhrase.phrase.toUpperCase();
+    const randomUpper = random.split("");
     //iterate over the phrase and output each letter(use filter method to pull out all matches)
     //check if letter selected matches any of the letters in the phrase
-    const some = random.some(oneLetter => oneLetter === letter);
 
-    return some;
+    const check = oneLetter => oneLetter === letter;
+
+    return randomUpper.some(check);
   }
 
   /**
@@ -69,7 +71,7 @@ class Phrase {
   showMatchedLetter(letter) {
     //use checkLetter filtered matches
     const phraseDiv = [...document.querySelectorAll("#phrase li")];
-
+    //iterate over the the phrases letter. If the letter passed in matches any of the letters in the phrase, show that letter.
     phraseDiv.map(phrase => {
       if (phrase.textContent === letter) {
         phrase.className = `show letter ${letter}`;

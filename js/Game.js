@@ -6,16 +6,34 @@ class Game {
   constructor() {
     this.missed = 5;
     this.phrases = this.createPhrases();
-    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase = null;
+  }
+
+  addClass(element, addedClass) {
+    element.className = addedClass;
+  }
+
+  buttonReset() {
+    buttons.forEach(button => {
+      button.className = "key";
+      button.disabled = false;
+    });
   }
 
   createPhrases() {
     const array = [
-      new Phrase("Hello one"),
-      new Phrase("Hello two"),
-      new Phrase("Hello three"),
-      new Phrase("Hello four"),
-      new Phrase("Hello five")
+      new Phrase("Simple and Clean"),
+      new Phrase("Behold the power of darkness"),
+      new Phrase("Aw phooey"),
+      new Phrase("All for one and one for all"),
+      new Phrase("No frowning and no sad faces"),
+      new Phrase("Sora you lazy bum"),
+      new Phrase("There are many worlds but they share the same sky"),
+      new Phrase("This boat runs on happy faces"),
+      new Phrase(
+        "No matter where we are our hearts will bring us together again"
+      ),
+      new Phrase("Is any of this for real or not")
     ];
 
     return array;
@@ -39,13 +57,28 @@ class Game {
    */
   startGame() {
     //get the screen overlay and hide it
-    const phrase = new Phrase();
     const overlay = document.getElementById("overlay");
+    new Phrase();
     overlay.style.display = "none";
-    phrase.addPhraseToDisplay();
+    this.activePhrase = this.getRandomPhrase();
+    this.activePhrase.addPhraseToDisplay();
   }
 
-  handleInteraction() {}
+  //organizes main game functions
+  handleInteraction(button) {
+    const buttonTargetText = button.target.innerText.toUpperCase();
+    const buttonTarget = button.target;
+    buttonTarget.disabled = true;
+    //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
+    if (game.activePhrase.checkLetter(buttonTargetText)) {
+      game.activePhrase.showMatchedLetter(buttonTargetText);
+      game.addClass(buttonTarget, "chosen");
+      game.checkForWin();
+    } else {
+      game.addClass(buttonTarget, "wrong");
+      game.removeLife();
+    }
+  }
 
   /**
 * Checks for winning move
@@ -55,8 +88,11 @@ won
 
   checkForWin() {
     const phraseDiv = [...document.querySelectorAll("#phrase li")];
+    //checks if every phrase does not contain the class hide
     const isNotHidden = phrase => phrase.classList[0] !== "hide";
-    return phraseDiv.every(isNotHidden);
+    if (phraseDiv.every(isNotHidden)) {
+      this.gameOver(true);
+    }
   }
 
   /**
@@ -70,7 +106,7 @@ won
     hearts[counter].setAttribute("src", "images/lostHeart.png");
 
     if (this.missed === 0) {
-      this.gameOver(true);
+      this.gameOver(false);
     }
   }
 
@@ -85,24 +121,23 @@ won
     const ul = document.createElement("ul");
     const hearts = [...document.querySelectorAll("#scoreboard li img")];
     this.missed = 5;
-    if (gameWon === false) {
+    phraseDiv.children[0].remove();
+    phraseDiv.appendChild(ul);
+    //iterate over the hearts and restore image
+    hearts.map((nothing, i) => {
+      hearts[i].setAttribute("src", "images/liveHeart.png");
+    });
+
+    this.buttonReset();
+    //if game not won, show lost game message. Else, show game won message
+    if (!gameWon) {
       overlay.style.display = "";
       overlay.style.backgroundColor = "red";
       gameOverMessage.textContent = "Sorry! You ran out of lives!";
-      phraseDiv.children[0].remove();
-      phraseDiv.appendChild(ul);
-      for (let i = 0; i < hearts.length; i++) {
-        hearts[i].setAttribute("src", "images/liveHeart.png");
-      }
     } else {
       overlay.style.display = "";
       overlay.style.backgroundColor = "Green";
       gameOverMessage.textContent = "You did it!";
-      phraseDiv.children[0].remove();
-      phraseDiv.appendChild(ul);
-      for (let i = 0; i < hearts.length; i++) {
-        hearts[i].setAttribute("src", "images/liveHeart.png");
-      }
     }
   }
 }
