@@ -103,7 +103,10 @@ won
   removeLife() {
     const hearts = [...document.querySelectorAll("#scoreboard li img")];
     const counter = (this.missed -= 1);
-    hearts[counter].setAttribute("src", "images/lostHeart.png");
+    hearts[counter].setAttribute(
+      "src",
+      "https://treehouseproject.s3.amazonaws.com/Project+four+images/redHeart.png"
+    );
 
     if (this.missed === 0) {
       this.gameOver(false);
@@ -125,19 +128,24 @@ won
     phraseDiv.appendChild(ul);
     //iterate over the hearts and restore image
     hearts.map((nothing, i) => {
-      hearts[i].setAttribute("src", "images/liveHeart.png");
+      hearts[i].setAttribute(
+        "src",
+        "https://treehouseproject.s3.amazonaws.com/Project+four+images/kingdom-hearts-heart-png-2.png"
+      );
     });
 
     this.buttonReset();
     //if game not won, show lost game message. Else, show game won message
     if (!gameWon) {
       overlay.style.display = "";
-      overlay.style.backgroundColor = "red";
       gameOverMessage.textContent = "Sorry! You ran out of lives!";
+      buttonReset.textContent = "Continue?";
+      game.addClass(overlay, "lose");
     } else {
       overlay.style.display = "";
-      overlay.style.backgroundColor = "Green";
       gameOverMessage.textContent = "You did it!";
+      buttonReset.textContent = "Play Again?";
+      game.addClass(overlay, "win");
     }
   }
 }

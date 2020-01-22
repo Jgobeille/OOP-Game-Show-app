@@ -8,9 +8,9 @@
   --color-lose: #D94545;
   --color-start: #5b85b7;
   --color-neutral: #445069;
-  --color-neutral-light: #D2D2D2;
+  --color-neutral-light: #e3d99f;
   --color-keys: #37474F;
-  --color-keys-light: #E5E5E5;
+  --color-keys-light: #e3d99f;
   --font-size-large: 60px;
   --font-size-medium: 20px;
   --transition: all .2s ease-in-out;
@@ -30,7 +30,9 @@ body {
   height: 100vh;
 }
 
-li, ol, ul {
+li,
+ol,
+ul {
   padding: 0;
   display: inline-block;
 }
@@ -61,9 +63,12 @@ button {
 }
 
 #btn__reset {
-	width: 200px;
-	margin: 0 auto;
+  width: 200px;
+  margin: 0 auto;
+  font-weight: 800;
 }
+
+
 
 .main-container {
   display: flex;
@@ -79,14 +84,18 @@ button {
   padding: 10px;
 }
 
-#phrase ul li{
+#phrase ul li {
   margin-top: 15px;
 }
 
 /* Title */
 
 .header {
-  color: #3a3f58;
+  color: var(--color-neutral);
+  font-family: 'kingdom_heartsregular';
+  font-size: 5em;
+  letter-spacing: 3px;
+  margin-top: 50px;
 }
 
 
@@ -110,8 +119,8 @@ button {
 
 
 .show {
-  color: #fff;
-  background-color: #4ac0d5;
+  color: var(--color-neutral);
+  background-color: #b3ffee;
   font-size: 20px;
   height: 65px;
   width: 65px;
@@ -120,26 +129,38 @@ button {
   border-radius: 5px;
   -webkit-animation-duration: .5s;
   animation-duration: .5s;
+  font-weight: 800;
 }
 
 
 /* Keyboard */
+
+.key {
+  font-family: 'kingdom_heartsregular';
+  font-size: 2em;
+  text-transform: capitalize;
+}
 
 .keyrow {
   display: flex;
   justify-content: center;
 }
 
+
 .chosen {
-  background: #3a3f58;
+  background: #f8c169;
+  font-family: 'kingdom_heartsregular';
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
+  font-size: 3em;
 }
 
 .wrong {
-  background: #f7a964;
+  background: #e15239;
+  font-family: 'kingdom_heartsregular';
   color: #FFFFFF;
+  font-size: 3em;
 }
 
 .btn__reset {
@@ -150,7 +171,7 @@ button {
   font-size: 20px;
   cursor: pointer;
   border-bottom: solid 4px rgba(0, 0, 0, .3);
-  border-right: solid 3px rgba(0, 0, 0, .3)
+  border-right: solid 3px rgba(0, 0, 0, .3);
 }
 
 .btn__reset:active {
@@ -176,11 +197,21 @@ button {
 }
 
 .title {
-  color: #FFF;
+  color: #b3ffee;
+  font-size: 5em;
+  font-weight: 700;
+  font-family: 'kingdom_heartsregular';
+  text-shadow: 1px 1px 5px #000;
+
 }
 
 .start {
-  background-color: #3a3f58;
+  background: url("https://treehouseproject.s3.amazonaws.com/Project+four+images/KH-overlay-image.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+
 }
 
 .start a {
@@ -196,9 +227,61 @@ button {
 }
 
 .lose {
-  background-color: #f5785f;
+  background: url("https://treehouseproject.s3.amazonaws.com/Project+four+images/sora-lost.jpg") no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
 }
 
 .lose a {
   color: var(--color-lose);
+}
+
+/* Floating CSS */
+
+/* How to: https://jsfiddle.net/djsbaker/rkzZG */
+
+.floating {
+  float: left;
+  -webkit-animation-name: Floatingx;
+  -webkit-animation-duration: 5s;
+  -webkit-animation-iteration-count: infinite;
+  -webkit-animation-timing-function: ease-in-out;
+  -moz-animation-name: Floating;
+  -moz-animation-duration: 5s;
+  -moz-animation-iteration-count: infinite;
+  -moz-animation-timing-function: ease-in-out;
+  margin-left: 30px;
+  margin-top: 5px;
+  box-shadow: 1px 4px 5px #000;
+
+}
+
+@-webkit-keyframes Floatingx {
+  from {
+    -webkit-transform: translate(0, 0px);
+  }
+
+  65% {
+    -webkit-transform: translate(0, 15px);
+  }
+
+  to {
+    -webkit-transform: translate(0, -0px);
+  }
+}
+
+@-moz-keyframes Floating {
+  from {
+    -moz-transform: translate(0, 0px);
+  }
+
+  65% {
+    -moz-transform: translate(0, 15px);
+  }
+
+  to {
+    -moz-transform: translate(0, -0px);
+  }
 }

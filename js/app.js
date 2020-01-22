@@ -38,7 +38,7 @@ document.getElementById("btn__reset").addEventListener("click", () => {
  * Handles onscreen keyboard button clicks
  * @param (HTMLButtonElement) button - The clicked button element
  */
-
+const buttonReset = document.getElementById("btn__reset");
 const buttons = [...document.querySelectorAll(".key")];
 
 //Disable the ability to view source code
