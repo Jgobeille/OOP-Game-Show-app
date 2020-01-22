@@ -27,6 +27,14 @@ Project Idea: Base the design on Kingdom Hearts! Change the hearts to image of k
 */
 
 // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
+
+/**
+ * Handles onscreen keyboard button clicks
+ * @param (HTMLButtonElement) button - The clicked button element
+ */
+const buttonReset = document.getElementById("btn__reset");
+const buttons = [...document.querySelectorAll(".key")];
+
 let game;
 
 document.getElementById("btn__reset").addEventListener("click", () => {
@@ -47,20 +55,20 @@ const buttons = [...document.querySelectorAll(".key")];
 //Disable the ability to view source code
 // https://stackoverflow.com/questions/24319786/how-to-hide-form-code-from-view-code-inspect-element-browser/24319844
 
-// document.onkeydown = function(e) {
-//   if (event.keyCode == 123) {
-//     return false;
-//   }
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
-//     return false;
-//   }
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
-//     return false;
-//   }
-//   if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
-//     return false;
-//   }
-//   if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
-//     return false;
-//   }
-// };
+document.onkeydown = function(e) {
+  if (event.keyCode == 123) {
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == "I".charCodeAt(0)) {
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == "C".charCodeAt(0)) {
+    return false;
+  }
+  if (e.ctrlKey && e.shiftKey && e.keyCode == "J".charCodeAt(0)) {
+    return false;
+  }
+  if (e.ctrlKey && e.keyCode == "U".charCodeAt(0)) {
+    return false;
+  }
+};

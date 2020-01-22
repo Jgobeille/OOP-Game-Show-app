@@ -63,7 +63,6 @@ class Game {
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
     window.addEventListener("keydown", e => {
-      console.log(e.key);
       game.handleInteractionKey(e.key);
     });
   }
