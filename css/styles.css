@@ -153,14 +153,14 @@ button {
   border-radius: 5px;
   font-size: var(--font-size-medium);
   color: #FFFFFF;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .wrong {
   background: #e15239;
   font-family: 'kingdom_heartsregular';
   color: #FFFFFF;
-  font-size: 3em;
+  font-size: 2.5em;
 }
 
 .btn__reset {
