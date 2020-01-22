@@ -28,10 +28,13 @@ Project Idea: Base the design on Kingdom Hearts! Change the hearts to image of k
 
 // console.log(`Active Phrase - phrase: ${game.activePhrase.phrase}`);
 let game;
+
 document.getElementById("btn__reset").addEventListener("click", () => {
   game = new Game();
   game.startGame();
-  buttons.forEach(key => key.addEventListener("click", game.handleInteraction));
+  buttons.forEach(key =>
+    key.addEventListener("click", game.handleInteractionClick)
+  );
 });
 
 /**

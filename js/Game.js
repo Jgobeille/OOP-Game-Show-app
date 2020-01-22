@@ -62,12 +62,18 @@ class Game {
     overlay.style.display = "none";
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
+    window.addEventListener("keydown", e => {
+      console.log(e.key);
+      game.handleInteractionKey(e.key);
+    });
   }
 
   //organizes main game functions
-  handleInteraction(button) {
+
+  handleInteractionClick(button) {
     const buttonTargetText = button.target.innerText.toUpperCase();
     const buttonTarget = button.target;
+    console.log(buttonTarget);
     buttonTarget.disabled = true;
     //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
     if (game.activePhrase.checkLetter(buttonTargetText)) {
@@ -76,6 +82,21 @@ class Game {
       game.checkForWin();
     } else {
       game.addClass(buttonTarget, "wrong");
+      game.removeLife();
+    }
+  }
+
+  handleInteractionKey(key) {
+    const keyText = key.toUpperCase();
+    const keyLower = key;
+    //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
+    const buttonKey = document.querySelector(`button[data-key="${keyLower}"]`);
+    if (game.activePhrase.checkLetter(keyText)) {
+      game.activePhrase.showMatchedLetter(keyText);
+      game.addClass(buttonKey, "chosen");
+      game.checkForWin();
+    } else {
+      game.addClass(buttonKey, "wrong");
       game.removeLife();
     }
   }
