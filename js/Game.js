@@ -57,14 +57,13 @@ class Game {
    */
   startGame() {
     //get the screen overlay and hide it
+
     const overlay = document.getElementById("overlay");
+
     new Phrase();
     overlay.style.display = "none";
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
-    window.addEventListener("keydown", e => {
-      game.handleInteractionKey(e.key);
-    });
   }
 
   //organizes main game functions
@@ -72,7 +71,6 @@ class Game {
   handleInteractionClick(button) {
     const buttonTargetText = button.target.innerText.toUpperCase();
     const buttonTarget = button.target;
-    console.log(buttonTarget);
     buttonTarget.disabled = true;
     //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
     if (game.activePhrase.checkLetter(buttonTargetText)) {
@@ -85,11 +83,15 @@ class Game {
     }
   }
 
-  handleInteractionKey(key) {
+  handleInteractionKey(letter) {
+    console.log(letter);
+    const key = letter.key;
     const keyText = key.toUpperCase();
-    const keyLower = key;
     //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
-    const buttonKey = document.querySelector(`button[data-key="${keyLower}"]`);
+    const buttonKey = document.querySelector(`button[data-key="${key}"]`);
+    buttonKey.disabled = true;
+    letter.cancelBubble = true;
+
     if (game.activePhrase.checkLetter(keyText)) {
       game.activePhrase.showMatchedLetter(keyText);
       game.addClass(buttonKey, "chosen");
