@@ -44,7 +44,9 @@ document.getElementById("btn__reset").addEventListener("click", () => {
 });
 
 document.addEventListener("keydown", e => {
-  game.handleInteractionKey(e);
+  if (e.key.length <= 1 && e.key.match(/[a-zA-Z]/i)) {
+    game.handleInteractionKey(e);
+  }
 });
 
 //Disable the ability to view source code

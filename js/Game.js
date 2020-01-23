@@ -89,8 +89,6 @@ class Game {
     const keyText = key.toUpperCase();
     //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
     const buttonKey = document.querySelector(`button[data-key="${key}"]`);
-    buttonKey.disabled = true;
-    letter.cancelBubble = true;
 
     if (game.activePhrase.checkLetter(keyText)) {
       game.activePhrase.showMatchedLetter(keyText);
@@ -98,7 +96,10 @@ class Game {
       game.checkForWin();
     } else {
       game.addClass(buttonKey, "wrong");
-      game.removeLife();
+      if (buttonKey.disabled === false) {
+        game.removeLife();
+        buttonKey.disabled = true;
+      }
     }
   }
 
