@@ -68,37 +68,39 @@ class Game {
 
   //organizes main game functions
 
-  handleInteractionClick(button) {
-    const buttonTargetText = button.target.innerText.toUpperCase();
-    const buttonTarget = button.target;
-    buttonTarget.disabled = true;
-    //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
-    if (game.activePhrase.checkLetter(buttonTargetText)) {
-      game.activePhrase.showMatchedLetter(buttonTargetText);
-      game.addClass(buttonTarget, "chosen");
-      game.checkForWin();
-    } else {
-      game.addClass(buttonTarget, "wrong");
-      game.removeLife();
-    }
-  }
+  //Things to try and accomplish here
 
-  handleInteractionKey(letter) {
-    console.log(letter);
-    const key = letter.key;
-    const keyText = key.toUpperCase();
+  handleInteraction(button) {
+    const buttonTargetText = button.target.innerText;
+    const buttonTarget = button.target;
+
+    const key = button.key;
+
     //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
     const buttonKey = document.querySelector(`button[data-key="${key}"]`);
-
-    if (game.activePhrase.checkLetter(keyText)) {
-      game.activePhrase.showMatchedLetter(keyText);
-      game.addClass(buttonKey, "chosen");
-      game.checkForWin();
-    } else {
-      game.addClass(buttonKey, "wrong");
-      if (buttonKey.disabled === false) {
+    buttonTarget.disabled = true;
+    //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
+    if (buttonTarget.nodeName === "BUTTON") {
+      if (game.activePhrase.checkLetter(buttonTargetText)) {
+        game.activePhrase.showMatchedLetter(buttonTargetText);
+        game.addClass(buttonTarget, "chosen");
+        game.checkForWin();
+      } else {
+        game.addClass(buttonTarget, "wrong");
         game.removeLife();
-        buttonKey.disabled = true;
+      }
+    } else if (buttonTarget.nodeName === "BODY" && key !== undefined) {
+      if (game.activePhrase.checkLetter(key.toUpperCase())) {
+        game.activePhrase.showMatchedLetter(key.toUpperCase());
+        game.addClass(buttonKey, "chosen");
+        game.checkForWin();
+      } else {
+        game.addClass(buttonKey, "wrong");
+        //if button is not disabled then remove life and then set disabled to true
+        if (buttonKey.disabled === false) {
+          game.removeLife();
+          buttonKey.disabled = true;
+        }
       }
     }
   }

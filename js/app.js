@@ -39,13 +39,13 @@ document.getElementById("btn__reset").addEventListener("click", () => {
   game.startGame();
 
   buttons.forEach(button =>
-    button.addEventListener("click", game.handleInteractionClick)
+    button.addEventListener("click", game.handleInteraction)
   );
 });
 
 document.addEventListener("keydown", e => {
   if (e.key.length <= 1 && e.key.match(/[a-zA-Z]/i)) {
-    game.handleInteractionKey(e);
+    game.handleInteraction(e);
   }
 });
 
