@@ -84,16 +84,20 @@ class Game {
       if (game.activePhrase.checkLetter(buttonTargetText)) {
         game.activePhrase.showMatchedLetter(buttonTargetText);
         game.addClass(buttonTarget, "chosen");
-        game.checkForWin();
+        if (game.checkForWin()) {
+          game.gameOver(true);
+        }
       } else {
         game.addClass(buttonTarget, "wrong");
         game.removeLife();
       }
-    } else if (buttonTarget.nodeName === "BODY" && key !== undefined) {
+    } else if (buttonTarget.nodeName !== "BUTTON" && key !== undefined) {
       if (game.activePhrase.checkLetter(key.toUpperCase())) {
         game.activePhrase.showMatchedLetter(key.toUpperCase());
         game.addClass(buttonKey, "chosen");
-        game.checkForWin();
+        if (game.checkForWin()) {
+          this.gameOver(true);
+        }
       } else {
         game.addClass(buttonKey, "wrong");
         //if button is not disabled then remove life and then set disabled to true
@@ -115,9 +119,7 @@ won
     const phraseDiv = [...document.querySelectorAll("#phrase li")];
     //checks if every phrase does not contain the class hide
     const isNotHidden = phrase => phrase.classList[0] !== "hide";
-    if (phraseDiv.every(isNotHidden)) {
-      this.gameOver(true);
-    }
+    return phraseDiv.every(isNotHidden);
   }
 
   /**
