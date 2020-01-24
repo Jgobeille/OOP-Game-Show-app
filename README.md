@@ -99,10 +99,10 @@ This code example shows of the main methods called addPhraseToDisplay which then
 
 ---
 
-![Image description](images\screenshot1.png)
-![Image description](images\screenshot2.png)
-![Image description](images\screenshot3.png)
-![Image description](images\screenshot4.png)
+![Image description](images/screenshot1.png)
+![Image description](images/screenshot2.png)
+![Image description](images/screenshot3.png)
+![Image description](images/screenshot4.png)
 
 ## Style Changes
 
