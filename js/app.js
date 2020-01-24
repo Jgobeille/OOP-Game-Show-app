@@ -43,12 +43,6 @@ document.getElementById("btn__reset").addEventListener("click", () => {
   );
 });
 
-document.addEventListener("keydown", e => {
-  if (e.key.length <= 1 && e.key.match(/[a-zA-Z]/i)) {
-    game.handleInteraction(e);
-  }
-});
-
 //Disable the ability to view source code
 // https://stackoverflow.com/questions/24319786/how-to-hide-form-code-from-view-code-inspect-element-browser/24319844
 

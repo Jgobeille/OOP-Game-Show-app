@@ -64,6 +64,12 @@ class Game {
     overlay.style.display = "none";
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
+
+    window.addEventListener("keydown", e => {
+      if (e.key.length <= 1 && e.key.match(/[a-zA-Z]/i) && game !== null) {
+        game.handleInteraction(e);
+      }
+    });
   }
 
   //organizes main game functions
@@ -168,11 +174,13 @@ won
       gameOverMessage.textContent = "Sorry! You ran out of lives!";
       buttonReset.textContent = "Continue?";
       game.addClass(overlay, "lose");
+      game = null;
     } else {
       overlay.style.display = "";
       gameOverMessage.textContent = "You did it!";
       buttonReset.textContent = "Play Again?";
       game.addClass(overlay, "win");
+      game = null;
     }
   }
 }
