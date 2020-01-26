@@ -4,9 +4,9 @@
 
 class Game {
   constructor() {
-    this.missed = 5;
+    this.missed = 0;
     this.phrases = this.createPhrases();
-    this.activePhrase = null;
+    this.activePhrase = undefined;
   }
 
   addClass(element, addedClass) {
@@ -45,11 +45,8 @@ class Game {
    */
   getRandomPhrase() {
     const upper = this.phrases.length;
-
-    for (let i = 0; i < this.phrases.length; i++) {
-      const random = Math.floor(Math.random() * upper - 1 + 1);
-      return this.phrases[random];
-    }
+    const random = Math.floor(Math.random() * upper - 1 + 1);
+    return this.phrases[random];
   }
 
   /**
@@ -60,16 +57,9 @@ class Game {
 
     const overlay = document.getElementById("overlay");
 
-    new Phrase();
     overlay.style.display = "none";
     this.activePhrase = this.getRandomPhrase();
     this.activePhrase.addPhraseToDisplay();
-
-    window.addEventListener("keydown", e => {
-      if (e.key.length <= 1 && e.key.match(/[a-zA-Z]/i) && game !== null) {
-        game.handleInteraction(e);
-      }
-    });
   }
 
   //organizes main game functions
@@ -135,13 +125,15 @@ won
    */
   removeLife() {
     const hearts = [...document.querySelectorAll("#scoreboard li img")];
-    const counter = (this.missed -= 1);
-    hearts[counter].setAttribute(
+
+    hearts[this.missed].setAttribute(
       "src",
       "https://treehouseproject.s3.amazonaws.com/Project+four+images/redHeart.png"
     );
 
-    if (this.missed === 0) {
+    this.missed += 1;
+
+    if (this.missed === 5) {
       this.gameOver(false);
     }
   }
@@ -174,13 +166,13 @@ won
       gameOverMessage.textContent = "Sorry! You ran out of lives!";
       buttonReset.textContent = "Continue?";
       game.addClass(overlay, "lose");
-      game = null;
+      game = undefined;
     } else {
       overlay.style.display = "";
       gameOverMessage.textContent = "You did it!";
       buttonReset.textContent = "Play Again?";
       game.addClass(overlay, "win");
-      game = null;
+      game = undefined;
     }
   }
 }

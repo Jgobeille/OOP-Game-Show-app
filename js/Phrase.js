@@ -12,7 +12,7 @@ class Phrase {
    */
   //PhraseToDisplay method
   addPhraseToDisplay() {
-    const randomPhrase = game.activePhrase.phrase.split("");
+    const randomPhrase = this.phrase.split("");
     const phraseDiv = document.getElementById("phrase").children[0];
 
     //iterate over the phrase and output each letter(maybe make as a helper function?)
@@ -54,7 +54,7 @@ class Phrase {
    * @param (string) letter - Letter to check
    */
   checkLetter(letter) {
-    const random = game.activePhrase.phrase.toUpperCase();
+    const random = this.phrase.toUpperCase();
     const randomUpper = random.split("");
     //iterate over the phrase and output each letter(use filter method to pull out all matches)
     //check if letter selected matches any of the letters in the phrase
