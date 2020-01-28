@@ -6,7 +6,7 @@ class Game {
   constructor() {
     this.missed = 0;
     this.phrases = this.createPhrases();
-    this.activePhrase = undefined;
+    this.activePhrase = null;
   }
 
   addClass(element, addedClass) {
@@ -75,6 +75,7 @@ class Game {
     //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
     const buttonKey = document.querySelector(`button[data-key="${key}"]`);
     buttonTarget.disabled = true;
+    buttonKey.disabled = true;
     //if letter selected matches letter in phrase, show letter and add chosen class. Else, add wrong class and remove life
     if (buttonTarget.nodeName === "BUTTON") {
       if (game.activePhrase.checkLetter(buttonTargetText)) {
@@ -97,10 +98,7 @@ class Game {
       } else {
         game.addClass(buttonKey, "wrong");
         //if button is not disabled then remove life and then set disabled to true
-        if (buttonKey.disabled === false) {
-          game.removeLife();
-          buttonKey.disabled = true;
-        }
+        game.removeLife();
       }
     }
   }
@@ -161,18 +159,16 @@ won
 
     this.buttonReset();
     //if game not won, show lost game message. Else, show game won message
+    game = undefined;
+    overlay.style.display = "";
     if (!gameWon) {
-      overlay.style.display = "";
       gameOverMessage.textContent = "Sorry! You ran out of lives!";
       buttonReset.textContent = "Continue?";
       game.addClass(overlay, "lose");
-      game = undefined;
     } else {
-      overlay.style.display = "";
       gameOverMessage.textContent = "You did it!";
       buttonReset.textContent = "Play Again?";
       game.addClass(overlay, "win");
-      game = undefined;
     }
   }
 }

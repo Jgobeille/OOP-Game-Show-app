@@ -30,7 +30,7 @@ class Phrase {
         this.appendChild(phraseDiv, element);
         //if it is a space, append with hide space class
       } else {
-        const element = this.createElement("LI", "name", "letter", `space`);
+        const element = this.createElement("LI", "name", "letter", "space");
         this.appendChild(phraseDiv, element);
       }
     });
