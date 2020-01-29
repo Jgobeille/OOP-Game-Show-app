@@ -10,7 +10,11 @@ class Game {
   }
 
   addClass(element, addedClass) {
-    element.className = addedClass;
+    if (element !== null) {
+      // Now we know that foo is defined, we are good to go.
+
+      element.className = addedClass;
+    }
   }
 
   buttonReset() {
