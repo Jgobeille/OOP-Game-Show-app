@@ -88,7 +88,6 @@ class Game {
         game.removeLife();
       }
     } else if (buttonTarget.nodeName !== "BUTTON" && key !== undefined) {
-      buttonKey.disabled = true;
       if (game.activePhrase.checkLetter(key.toUpperCase())) {
         game.activePhrase.showMatchedLetter(key.toUpperCase());
         game.addClass(buttonKey, "chosen");
@@ -97,8 +96,11 @@ class Game {
         }
       } else {
         game.addClass(buttonKey, "wrong");
-        //if button is not disabled then remove life and then set disabled to true
-        game.removeLife();
+        if (buttonKey.disabled === false) {
+          //if button is not disabled then remove life and then set disabled to true
+          buttonKey.disabled = true;
+          game.removeLife();
+        }
       }
     }
   }
